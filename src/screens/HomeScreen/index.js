@@ -13,6 +13,7 @@ import Apiconstants from '../../appConfig/APIConstants'
 import Snackbar from "react-native-snackbar";
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { CommonActions } from '@react-navigation/native';
+import RNRestart from "react-native-restart";
 
 
 
@@ -49,16 +50,19 @@ export default function index(props) {
 
     const onLogout = async () => {
         try {
-            await AsyncStorage.removeItem('@userToken')
-            props.navigation.dispatch(
-                CommonActions.reset({
-                    index: 0,
-                    routes: [
-                        { name: 'onboard' },
+           await AsyncStorage.removeItem('@userToken')
 
-                    ],
-                })
-            );
+            await AsyncStorage.clear();
+           RNRestart.Restart();
+            // props.navigation.dispatch(
+            //     CommonActions.reset({
+            //         index: 0,
+            //         routes: [
+            //             { name: 'onboard' },
+
+            //         ],
+            //     })
+            // );
         } catch (e) {
             // remove error
         }
@@ -74,7 +78,7 @@ export default function index(props) {
                             setMenu(true)
                         }
                         else {
-                            //   onLogout()
+                         //   onLogout()
                         }
 
                     }}
@@ -121,10 +125,10 @@ export default function index(props) {
                         console.warn(userProfile)
                         props.navigation.navigate('VideoScreen')
 
-                        // props.navigation.navigate('users')
+                       // props.navigation.navigate('users')
                     }
                     else {
-                        //   onLogout()
+                     //   onLogout()
                     }
                 }}
                 style={{
@@ -142,7 +146,7 @@ export default function index(props) {
 
                 onRequestClose={() => setMenu(false)}
             >
-                <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }} >
+                <View style={{ flex: 1, backgroundColor: 'white' }} >
                     <TouchableOpacity
                         onPress={() => setMenu(false)}
                         style={{ height: 60, justifyContent: 'center', alignItems: 'center' }}
@@ -185,7 +189,7 @@ export default function index(props) {
                             </TouchableOpacity>
                         ))
                     }
-                </SafeAreaView>
+                </View>
 
             </Modal>
         </SafeAreaView>

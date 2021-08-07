@@ -16,23 +16,73 @@ export default function inddex(props) {
     const getSyncInfo = async () => {
         try {
             const value = await AsyncStorage.getItem('@userToken');
+            const is_otp = await AsyncStorage.getItem('is_otp',false);
+            const is_aadh = await AsyncStorage.getItem('is_aadh',false);
+        //     if(value!==null && is_otp && is_aadh)
+        //     {
+        //         // userdata=JSON.parse(value).userToken
+        //         console.warn('HAHAHA', JSON.parse(value).authToken)
+        //         setAuthToken(JSON.parse(value).authToken)
+        //         props.navigation.dispatch(
+        //             CommonActions.reset({
+        //                 index: 0,
+        //                 routes: [
+ 
+        //                     { name: 'home' },
 
-            if (value !== null) {
-                // userdata=JSON.parse(value).userToken
-                console.warn('HAHAHA', JSON.parse(value).authToken)
-                setAuthToken(JSON.parse(value).authToken)
-                props.navigation.dispatch(
-                    CommonActions.reset({
-                        index: 0,
-                        routes: [
-                            { name: 'home' },
+        //                 ],
+        //             })
+        //         );
+        // }
+            if(is_otp)
+            {
 
-                        ],
-                    })
-                );
+                if(value!==null)
+                {
+                    if(is_aadh)
+                    {
+                        console.warn('HAHAHA', JSON.parse(value).authToken)
+                        setAuthToken(JSON.parse(value).authToken)
+                        props.navigation.dispatch(
+                            CommonActions.reset({
+                                index: 0,
+                                routes: [
+         
+                                    { name: 'home' },
+        
+                                ],
+                            })
+                        );
+                    }
+                    else{
+                        props.navigation.dispatch(
+                            CommonActions.reset({
+                                index: 0,
+                                routes: [
+                                    { name: 'adhar' },
+        
+                                ],
+                            })
+                        );
+    
+                    }
+                }
+                else
+                {
+                    props.navigation.dispatch(
+                        CommonActions.reset({
+                            index: 0,
+                            routes: [
+                                { name: 'onboard' },
+    
+                            ],
+                        })
+                    );
+    
+                }
+
             }
-            else {
-                console.warn('no data found')
+            else{
                 props.navigation.dispatch(
                     CommonActions.reset({
                         index: 0,
@@ -43,7 +93,6 @@ export default function inddex(props) {
                     })
                 );
             }
-
 
 
         } catch (error) {

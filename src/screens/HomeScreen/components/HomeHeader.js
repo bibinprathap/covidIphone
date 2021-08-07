@@ -8,6 +8,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import Geocoder from 'react-native-geocoder';
 // import Geolocation from '@react-native-community/geolocation';
 import Geolocation from 'react-native-geolocation-service';
+import { request, PERMISSIONS } from 'react-native-permissions';
 
 function HomeHeader(props) {
 
@@ -46,28 +47,33 @@ function HomeHeader(props) {
 	const [value, setValue] = useState(null)
 
 	useEffect(() =>{
-		Geolocation.getCurrentPosition(
-			(position) => {
-			const location = JSON.stringify(position);
-            console.log('heri s avalue', location)
-			setPosition(location)
-			let data = JSON.parse(location);
-			const latitude = data.coords.latitude
-			const longitude = data.coords.longitude
-			gerArea(latitude, longitude)
-			}
-		);
-
-		const gerArea = async(latitude, longitude) =>  {
-			Geocoder.fallbackToGoogle("AIzaSyDrTbBJakraXytn99yDNU7IKu2S60dXWHo");
-			let lat = latitude;
-			let lng = longitude;
-			let ret = await Geocoder.geocodePosition({lat, lng});
-			let Value = ret[0].locality
-			setValue(Value);
-            console.log('herei s a', Value)
-		}	
-	})
+        request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION).then((result) => {
+            if(result == "granted") {
+                Geolocation.getCurrentPosition(
+                    (position) => {
+                    console.log('position', position)
+                    const location = JSON.stringify(position);
+                    console.log('heri s avalue', location)
+                    setPosition(location)
+                    let data = JSON.parse(location);
+                    const latitude = data.coords.latitude
+                    const longitude = data.coords.longitude
+                    gerArea(latitude, longitude)
+                    }
+                );
+        
+                const gerArea = async(latitude, longitude) =>  {
+                    Geocoder.fallbackToGoogle("AIzaSyDrTbBJakraXytn99yDNU7IKu2S60dXWHo");
+                    let lat = latitude;
+                    let lng = longitude;
+                    let ret = await Geocoder.geocodePosition({lat, lng});
+                    let Value = ret[0].locality
+                    setValue(Value);
+                    console.log('herei s a', Value)
+                }
+            }
+        })
+	},[])
     
     return (
         <View style={{ height: 75, backgroundColor: 'white', elevation: 3 }}>
