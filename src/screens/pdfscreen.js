@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Modal, Text, TouchableOpacity, SafeAreaView } from 'react-native'
+import {View, Modal, Text, TouchableOpacity} from 'react-native'
 import PDFView from 'react-native-view-pdf'
 import Config from '../appConfig/Config';
 import Share from "react-native-share";
-import Header from '../components/Header';
 
-export default function pdfScreen({ navigation, route }) {
-    const { pdfdata } = route.params
+export default function pdfScreen({navigation, route}) {
+    const {pdfdata} = route.params
     // const [pdfData, setPdfData] = useState('')
 
     // useEffect(() => {
@@ -26,7 +25,7 @@ export default function pdfScreen({ navigation, route }) {
     //             console.warn(error);
     //         });
     // },[])
-
+   
     const resources = {
         // file: Platform.OS === 'ios' ? invoicePathIOS + ".pdf" : invoicePath,
         // url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
@@ -46,34 +45,33 @@ export default function pdfScreen({ navigation, route }) {
             .catch((err) => { console.warn('ERRR', err) });
     }
 
-    return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
-            {/* <Modal visible={invoiceModal} animationType='slide' onRequestClose={() => setInvoiceModal(false)}> */}
-            <Header onPressBack={() => navigation.goBack()} />
-            <View style={{ flex: 1, backgroundColor: 'white' }}>
-                <PDFView
-                    fadeInDuration={250.0}
-                    style={{ flex: 1 }}
-                    // resource={resources.url!=undefined&&resources.url!=null?resources.url:null}
-                    resource={resources.url}
-                    resourceType={'url'}
-                    onLoad={() => console.warn(`PDF rendered from ${'url'}`)}
-                    onError={(error) => console.warn('Cannot render PDF', error)}
-                />
-
-            </View>
-            <View style={{ height: 50, flexDirection: 'row', margin: 10 }}>
-                <TouchableOpacity onPress={() => navigation.goBack()}
-                    style={{ flex: 2, backgroundColor: 'red', borderRadius: 10, justifyContent: 'center', alignItems: 'center', marginRight: 5 }}>
-                    <Text style={{ fontFamily: Config.semi_bold, color: 'white' }}>Close</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => shareInvoice()}
-                    style={{ flex: 1, backgroundColor: Config.dark, borderRadius: 10, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-                    <Text style={{ fontFamily: Config.semi_bold, color: 'white', marginHorizontal: 5 }}>share</Text>
-                    {/* <Icon1 name='sharealt' size={20} color='white'/> */}
-                </TouchableOpacity>
-            </View>
-
-        </SafeAreaView>
+    return(
+                <View>
+                    {/* <Modal visible={invoiceModal} animationType='slide' onRequestClose={() => setInvoiceModal(false)}> */}
+                    <Modal>
+                    <View style={{ flex: 1, }}>
+                        <PDFView
+                            fadeInDuration={250.0}
+                            style={{ flex: 1 }}
+                            // resource={resources.url!=undefined&&resources.url!=null?resources.url:null}
+                            resource={resources.url}
+                            resourceType={'url'}
+                            onLoad={() => console.warn(`PDF rendered from ${'url'}`)}
+                            onError={(error) => console.warn('Cannot render PDF', error)}
+                        />
+                        <View style={{ height: 50, flexDirection: 'row', margin: 10 }}>
+                            <TouchableOpacity onPress={() => navigation.goBack()}
+                                style={{ flex: 2, backgroundColor: 'red', borderRadius: 10, justifyContent: 'center', alignItems: 'center', marginRight: 5 }}>
+                                <Text style={{ fontFamily: Config.semi_bold, color: 'white' }}>Close</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => shareInvoice()}
+                                style={{ flex: 1, backgroundColor: Config.dark, borderRadius: 10, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+                                <Text style={{ fontFamily: Config.semi_bold, color: 'white', marginHorizontal: 5 }}>share</Text>
+                                {/* <Icon1 name='sharealt' size={20} color='white'/> */}
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
+                </View>
     )
 }
