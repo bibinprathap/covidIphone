@@ -146,7 +146,7 @@ export default function index(props) {
 
                 onRequestClose={() => setMenu(false)}
             >
-                <View style={{ flex: 1, backgroundColor: 'white' }} >
+                <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }} >
                     <TouchableOpacity
                         onPress={() => setMenu(false)}
                         style={{ height: 60, justifyContent: 'center', alignItems: 'center' }}
@@ -189,7 +189,7 @@ export default function index(props) {
                             </TouchableOpacity>
                         ))
                     }
-                </View>
+                </SafeAreaView>
 
             </Modal>
         </SafeAreaView>

@@ -8,6 +8,8 @@
 	<string>CovidCare</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -41,8 +43,12 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>CovidCare needed to use your camera to scan test Kit</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>CovidCare needed to access your location to serve better services</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>CovidCare needed to access your location to serve better services</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>CovidCare needed to access your location to serve better services</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

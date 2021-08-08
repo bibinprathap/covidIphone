@@ -41,8 +41,8 @@ export default function CovidTestKitScanScreen({ navigation, route }) {
                 TestResult
                 TestID={testId}
                 onFailureAdharRequest={(res, testImage)=>{
-                    // navigation.navigate('ReScanScreen');
-                    navigation.navigate('testresult', { covidTestKitScanDetails, testImage, code, testId })
+                    navigation.navigate('ReScanScreen');
+                    // navigation.navigate('testresult', { covidTestKitScanDetails, testImage, code, testId })
                 }}
                 onSuccessAdharRequest={(res, testImage) => {
                     setCovidTestKitScanDetails(res)

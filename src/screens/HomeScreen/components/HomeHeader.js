@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, Platform } from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import Config from '../../../appConfig/Config'
 import Fonts from '../../../appConfig/Fonts'
@@ -14,7 +14,7 @@ function HomeHeader(props) {
 
     // const [location, setLocation] = useState('')
     // const [ value, setValue] = useState('')
-  
+
     // useEffect(() => {
     //     // const getData = () => {
     //         Geolocation.getCurrentPosition(
@@ -31,7 +31,7 @@ function HomeHeader(props) {
     //         { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 }
     //     );
     // // };
-    
+
     // const getArea = async (latitude, longitude) => {
     //       Geocoder.fallbackToGoogle("AIzaSyDrTbBJakraXytn99yDNU7IKu2S60dXWHo")
     //       let lat = latitude;
@@ -44,37 +44,59 @@ function HomeHeader(props) {
     //  },[]);
 
     const [position, setPosition] = useState(null)
-	const [value, setValue] = useState(null)
+    const [value, setValue] = useState(null)
 
-	useEffect(() =>{
-        request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION).then((result) => {
-            if(result == "granted") {
-                Geolocation.getCurrentPosition(
-                    (position) => {
-                    console.log('position', position)
-                    const location = JSON.stringify(position);
-                    console.log('heri s avalue', location)
-                    setPosition(location)
-                    let data = JSON.parse(location);
-                    const latitude = data.coords.latitude
-                    const longitude = data.coords.longitude
-                    gerArea(latitude, longitude)
-                    }
-                );
-        
-                const gerArea = async(latitude, longitude) =>  {
-                    Geocoder.fallbackToGoogle("AIzaSyDrTbBJakraXytn99yDNU7IKu2S60dXWHo");
-                    let lat = latitude;
-                    let lng = longitude;
-                    let ret = await Geocoder.geocodePosition({lat, lng});
-                    let Value = ret[0].locality
-                    setValue(Value);
-                    console.log('herei s a', Value)
+    useEffect(() => {
+        if (Platform.OS == 'android') {
+            request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION).then((result) => {
+                if (result == "granted") {
+                    locationFN()
                 }
-            }
-        })
-	},[])
-    
+            })
+        }
+        else {
+            Geolocation.requestAuthorization('whenInUse').then((res) => {
+                console.warn('IOS PERMISSION', res)
+                if (res == 'granted') {
+                    locationFN()
+                }
+            })
+        }
+
+    }, [])
+
+    const locationFN = () => {
+        
+        Geolocation.getCurrentPosition(
+            (position) => {
+                console.warn('position', position)
+                const location = JSON.stringify(position);
+                console.log('heri s avalue', location)
+                setPosition(location)
+                let data = JSON.parse(location);
+                const latitude = data.coords.latitude
+                const longitude = data.coords.longitude
+                gerArea(latitude, longitude)
+            },
+            (error) => {
+                console.log("map error: ", error);
+                console.log(error.code, error.message);
+            },
+            { enableHighAccuracy: false, timeout: 15000, maximumAge: 10000 }
+        );
+
+        const gerArea = async (latitude, longitude) => {
+            console.warn('CALLING AREA')
+            Geocoder.fallbackToGoogle("AIzaSyDrTbBJakraXytn99yDNU7IKu2S60dXWHo");
+            let lat = latitude;
+            let lng = longitude;
+            let ret = await Geocoder.geocodePosition({ lat, lng });
+            let Value = ret[0].locality
+            setValue(Value);
+            console.warn('herei s a', Value)
+        }
+    }
+
     return (
         <View style={{ height: 75, backgroundColor: 'white', elevation: 3 }}>
             <View style={{ height: 50, backgroundColor: 'white', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>

@@ -121,9 +121,9 @@ function OTPScreen({ navigation, route }) {
             await AsyncStorage.setItem('@userToken', jsonValue)
             setAuthToken(RES_DATA.authcode)
             if (RES_DATA.registered == true) {
-                AsyncStorage.setItem('is_otp',true);
-                AsyncStorage.setItem('is_aadh',true);
-    
+                AsyncStorage.setItem('is_otp', 'true');
+                AsyncStorage.setItem('is_aadh', 'true');
+
                 navigation.dispatch(
                     CommonActions.reset({
                         index: 0,
@@ -135,7 +135,7 @@ function OTPScreen({ navigation, route }) {
                 );
             }
             else {
-                 AsyncStorage.setItem('is_otp',true); 
+                AsyncStorage.setItem('is_otp', 'true');
                 navigation.navigate('adhar')
             }
 

@@ -30,6 +30,8 @@ PODS:
   - libwebp/webp (1.2.0)
   - Permission-Camera (3.0.4):
     - RNPermissions
+  - Permission-LocationAlways (3.0.4):
+    - RNPermissions
   - Permission-LocationWhenInUse (3.0.4):
     - RNPermissions
   - Permission-MediaLibrary (3.0.4):
@@ -222,6 +224,8 @@ PODS:
     - React
   - react-native-image-picker (4.0.4):
     - React-Core
+  - react-native-restart (0.0.22):
+    - React-Core
   - react-native-safe-area-context (3.2.0):
     - React-Core
   - react-native-track-player (1.2.7):
@@ -375,6 +379,7 @@ DEPENDENCIES:
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - Permission-Camera (from `../node_modules/react-native-permissions/ios/Camera`)
+  - Permission-LocationAlways (from `../node_modules/react-native-permissions/ios/LocationAlways`)
   - Permission-LocationWhenInUse (from `../node_modules/react-native-permissions/ios/LocationWhenInUse`)
   - Permission-MediaLibrary (from `../node_modules/react-native-permissions/ios/MediaLibrary`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -397,6 +402,7 @@ DEPENDENCIES:
   - react-native-html-to-pdf (from `../node_modules/react-native-html-to-pdf`)
   - react-native-image-base64 (from `../node_modules/react-native-image-base64`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
+  - react-native-restart (from `../node_modules/react-native-restart`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-track-player (from `../node_modules/react-native-track-player`)
   - react-native-video (from `../node_modules/react-native-video`)
@@ -450,6 +456,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   Permission-Camera:
     :path: "../node_modules/react-native-permissions/ios/Camera"
+  Permission-LocationAlways:
+    :path: "../node_modules/react-native-permissions/ios/LocationAlways"
   Permission-LocationWhenInUse:
     :path: "../node_modules/react-native-permissions/ios/LocationWhenInUse"
   Permission-MediaLibrary:
@@ -490,6 +498,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-base64"
   react-native-image-picker:
     :path: "../node_modules/react-native-image-picker"
+  react-native-restart:
+    :path: "../node_modules/react-native-restart"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-track-player:
@@ -564,6 +574,7 @@ SPEC CHECKSUMS:
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
   libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0
   Permission-Camera: ffd449756840ddc0f6294e95d688fecaadfe238c
+  Permission-LocationAlways: 3ec71c5811b721b1fb8515d752bb789a7b57125b
   Permission-LocationWhenInUse: 9d9050bea73073cd17dd46c3a8cee79231034c3a
   Permission-MediaLibrary: 3ceaf0254478b574932737536833c01b8496376e
   RCTRequired: 082f10cd3f905d6c124597fd1c14f6f2655ff65e
@@ -584,6 +595,7 @@ SPEC CHECKSUMS:
   react-native-html-to-pdf: 95ffebf254a9a1e5aaacfcaf4116974096b060d8
   react-native-image-base64: acfe962aa79535d826a2668e66474e85a9ee468d
   react-native-image-picker: 8d96c42425d3f143af7dd41dbbb4887b2c3ac851
+  react-native-restart: d4ea7637e193da7558d229b3704d500ec0d75f9c
   react-native-safe-area-context: e471852c5ed67eea4b10c5d9d43c1cebae3b231d
   react-native-track-player: 878d6c66e4ae3a69f6a534c57c6c34a42e9b033f
   react-native-video: 1574074179ecaf6a9dd067116c8f31bf9fec15c8
@@ -619,6 +631,6 @@ SPEC CHECKSUMS:
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
 
-PODFILE CHECKSUM: 83c4341ebb8d913ef0d099c6534bc73a827c7181
+PODFILE CHECKSUM: bca2fd99d68f182273e1e521254c1bc44d41679f
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.10.2
