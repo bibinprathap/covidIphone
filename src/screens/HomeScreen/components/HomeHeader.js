@@ -111,6 +111,7 @@ function HomeHeader(props) {
                 <MaterialIcon name='location-on' size={20} color={Config.dark} />
                 <Text style={{ fontFamily: Fonts.regular, fontSize: 12 }}>{value}</Text>
             </TouchableOpacity>
+            
         </View>
     )
 }
