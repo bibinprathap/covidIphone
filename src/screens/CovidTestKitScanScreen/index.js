@@ -41,7 +41,8 @@ export default function CovidTestKitScanScreen({ navigation, route }) {
                 TestResult
                 TestID={testId}
                 onFailureAdharRequest={(res, testImage)=>{
-                    navigation.navigate('ReScanScreen');
+                    navigation.navigate('covidtestkitscan');
+                    // navigation.navigate('ReScanScreen');
                     // navigation.navigate('testresult', { covidTestKitScanDetails, testImage, code, testId })
                 }}
                 onSuccessAdharRequest={(res, testImage) => {
@@ -56,8 +57,8 @@ export default function CovidTestKitScanScreen({ navigation, route }) {
                             text: "Image is not recognisable",
                             backgroundColor: "red",
                         });
-                        // navigation.navigate('covidtestkitscan');
-                        navigation.navigate('testresult', { covidTestKitScanDetails, testImage, code, testId })
+                        navigation.navigate('covidtestkitscan');
+                        // navigation.navigate('testresult', { covidTestKitScanDetails, testImage, code, testId })
                     }
                     else
                     {
@@ -77,8 +78,8 @@ export default function CovidTestKitScanScreen({ navigation, route }) {
                             text: "Image is not recognisable",
                             backgroundColor: "red",
                         });
-                        // navigation.navigate('covidtestkitscan');
-                        navigation.navigate('testresult', { covidTestKitScanDetails, testImage, code, testId })
+                        navigation.navigate('covidtestkitscan');
+                        // navigation.navigate('testresult', { covidTestKitScanDetails, testImage, code, testId })
                     }
                     else
                     {

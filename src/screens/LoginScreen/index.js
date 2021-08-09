@@ -45,7 +45,7 @@ function LoginScreen({ navigation }) {
                         Snackbar.show({
                             duration: Snackbar.LENGTH_LONG,
                             text: "OTP Sent",
-                            backgroundColor: "#4C95B9",
+                            backgroundColor: "#FCB913",
                         });
                         navigation.navigate('otp', { number })
                     }
