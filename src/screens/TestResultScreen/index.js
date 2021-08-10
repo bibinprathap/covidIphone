@@ -51,8 +51,8 @@ export default function index(props) {
         var data = new FormData();
         data.append('authcode', authToken);
         // data.append('authcode', 'c8db156d7be4a86d397c35df73be2709');
-        // data.append('test_id', testId)
-        data.append('test_id', '1')
+        data.append('test_id', testId)
+        // data.append('test_id', '1')
         console.log('data', data)
         // Snackbar.show({
         //     duration: Snackbar.LENGTH_LONG,

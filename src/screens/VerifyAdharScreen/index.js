@@ -70,7 +70,12 @@ export default function index(props) {
                         text: res.data.status,
                         backgroundColor: "red",
                     });
-
+                    console.log('response status', res.data.status)
+                    if (res.data.status == "Aadhar already registered") {
+                        AsyncStorage.setItem('is_otp',false);
+                        AsyncStorage.setItem('@userToken',null);
+                        AsyncStorage.clear();
+                    }
                 }
             })
             .catch((error) => {
@@ -81,7 +86,7 @@ export default function index(props) {
                     text: "Failed to Saved",
                     backgroundColor: "red",
                 });
-
+                console.log("error of fail", error)
 
             });
 
