@@ -17,6 +17,8 @@ export default function VideoScreen(props) {
                     source={require('../../assets/Instructions.mp4')}
                     disableControlsAutoHide={false}
                     onBack={() => props.navigation.goBack()}
+                    playInBackground={false}
+                    playWhenInactive={false}
                 />
             </View>
 
